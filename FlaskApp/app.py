@@ -33,5 +33,9 @@ def signin():
 def mains():
     return render_template('index.html')
 
+@app.route('/fb_page')
+def fb_page():
+    return render_template('fb_page.html')
+
 if __name__ == "__main__":
     app.run(debug=True)
