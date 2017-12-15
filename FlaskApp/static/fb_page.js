@@ -18,6 +18,7 @@ window.fbAsyncInit = function() {
         version    : 'v2.11' // latest version 
     });
     FB.AppEvents.logPageView();
+    login();
 };
 
 function login(){
@@ -57,7 +58,8 @@ function API(authResponse) {
         var response = JSON.parse(this.responseText);
         console.log(response);
         document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.name + '!';
-        document.getElementById('dp').src = response.picture.data.url; 
+        document.getElementById('dp').src = response.picture.data.url;
+        draw(response);
     }
 
     var oReq = new XMLHttpRequest();
@@ -66,12 +68,61 @@ function API(authResponse) {
     oReq.send();
 }
 
-// window.onload = function () {
-//     login();
-// }
-$(document).ready(function(){
-    //login();
-    setTimeout(function(){
-        $("#hit").click();
-    },1000);
-});
+function draw (res){
+    for(var i=0; i<res.albums.data.length; i++){
+        if(res.albums.data[i].name == "Profile Pictures"){
+            for(var j=0; j<4; j++){
+                var imgDesc = res.albums.data[i].photos.data[j].name;
+                var imgSrc = res.albums.data[i].photos.data[j].picture;
+                var imgLikesArr = res.albums.data[i].photos.data[j].likes.data;
+
+                var element = document.createElement("div");
+                var img = document.createElement('img');
+                    img.src = imgSrc;
+                var p1 = document.createElement('p');
+                    p1.innerHTML = imgDesc;
+                var button = document.createElement('button');
+                    button.id = "btn"+j;
+                    button.innerHTML = "click to view Analytics";
+                    button.addEventListener ("click", function() {
+                        $('#graph').css('display','block');
+                    });
+                var hr = document.createElement('hr');
+                element.appendChild(hr);
+                element.appendChild(img);
+                element.appendChild(p1);
+                element.appendChild(button);
+                document.getElementById('thumbnail').appendChild(element);
+            }
+        }
+    }
+}
+
+window.onload = function () {
+    
+    //Better to construct options first and then pass it as a parameter
+    var options = {
+      title: {
+        text: "Statistics"
+      },
+      animationEnabled: true,
+      exportEnabled: true,
+      data: [
+      {
+        type: "spline", //change it to line, area, column, pie, etc
+        dataPoints: [
+          { x: 10, y: 10 },
+          { x: 20, y: 12 },
+          { x: 30, y: 8 },
+          { x: 40, y: 14 },
+          { x: 50, y: 6 },
+          { x: 60, y: 24 },
+          { x: 70, y: -4 },
+          { x: 80, y: 10 }
+        ]
+      }
+      ]
+    };
+    $("#chartContainer").CanvasJSChart(options);
+    
+}

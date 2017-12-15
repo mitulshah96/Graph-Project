@@ -14,40 +14,8 @@
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
-  
-     <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-  <!-- <script src="https://connect.facebook.net/en_US/sdk.js" id="facebook-jssdk"></script> -->
+  <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
   <script type="text/javascript" src="../static/fb_page.js"></script>  
-  <script>
-      window.onload = function () {
-      
-      //Better to construct options first and then pass it as a parameter
-      var options = {
-        title: {
-          text: "Facebook Like Image"
-        },
-        animationEnabled: true,
-        exportEnabled: true,
-        data: [
-        {
-          type: "spline", //change it to line, area, column, pie, etc
-          dataPoints: [
-            { x: 10, y: 10 },
-            { x: 20, y: 12 },
-            { x: 30, y: 8 },
-            { x: 40, y: 14 },
-            { x: 50, y: 6 },
-            { x: 60, y: 24 },
-            { x: 70, y: -4 },
-            { x: 80, y: 10 }
-          ]
-        }
-        ]
-      };
-      $("#chartContainer").CanvasJSChart(options);
-      
-      }
-      </script>
 </head>
 
 <body>
@@ -62,27 +30,30 @@
                     <li role="presentation">
                         <a href="dashboards">Dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </li>
-                   
                 </ul>
             </nav>
-            
             <h3 class="text-muted">Live Analytic</h3>
         </div>
-        <br/>
-        <a href='#' onclick='login();' id="hit" style="display : none">Login</a>
-        <a href='#' onclick='logout();'> FB logout</a>
-        <p id="status"></p>
-        <img id="dp" height="200" width="200"></img>
-        <br/><br/><br/>
-        <div id="chartContainer" style="height: 300px; width: 100%;"></div>
-        <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
-        <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
-        <br/><br/><br/><br/><br/><br/><br/>
-
-        <footer class="footer">
-            <p>&copy; Company 2017</p>
-        </footer>
+        <hr>
+        <div style="text-align: center">
+            <img id="dp" height="200" width="200"></img>
+            <p id="status"></p>
+            <a href='#' onclick='login();' id="hit" style="display : none">Login</a>
+            <a href='#' onclick='logout();'>click to logout</a>
+        </div>
+        <hr>
+        <h3 style="text-align: center">Displaying Your Most Liked Profile Pictures</h3>
+        <div id="thumbnail"></div>
+        <hr>
+        <div id="graph" style="display : none">
+            <h3 style="text-align: center">Displaying your Picture Analytics</h3>
+            <hr>
+            <div id="chartContainer" style="height: 300px; width: 100%;"></div>
+            <br>
+        </div>
     </div>
+    <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>
+    <script src="https://canvasjs.com/assets/script/jquery.canvasjs.min.js"></script>
 </body>
 
 </html>
