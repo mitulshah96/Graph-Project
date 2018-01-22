@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>FB</title>
+  <title>IG</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
   <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
@@ -15,7 +15,7 @@
   <script type="text/javascript" src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
   <link href="http://getbootstrap.com/dist/css/bootstrap.min.css" rel="stylesheet">
   <link href="http://getbootstrap.com/examples/jumbotron-narrow/jumbotron-narrow.css" rel="stylesheet">
-  <script type="text/javascript" src="../static/fb_page.js"></script>  
+  <script type="text/javascript" src="../static/ig_page.js"></script>  
 </head>
 
 <body>
@@ -36,20 +36,23 @@
         </div>
         <hr>
         <div style="text-align: center">
-            <img id="dp" height="200" width="200"></img>
             <p id="status"></p>
-            <a href='#' onclick='login();' id="hit" style="display : none">Login</a>
+            <img id="dp" height="200" width="200"></img>
+            <h3>Instagram Details</h3>
+            <div id="ig_profile">
+
+            </div>
+            <!-- <a href='#' onclick='login();' id="hit" style="display : none">Login</a> -->
             <a href='#' onclick='logout();'>click to logout</a>
         </div>
         <hr>
-        <h3 style="text-align: center">Displaying Your Facebook Profile Pictures</h3>
+        <h3 style="text-align: center">Displaying Your Instagram Pictures</h3>
         <div id="thumbnail"></div>
         <hr>
         <div id="graph" style="display : none">
             <h3 style="text-align: center">Displaying your Picture Analytics</h3>
             <hr>
-            <div id="chartContainer" style="height: 200px; width: 400%px"></div>
-            <br>
+            <div id="chartContainer" style="height: 200px; width: 400px;"></div>
         </div>
     </div>
     <script src="https://canvasjs.com/assets/script/jquery-1.11.1.min.js"></script>

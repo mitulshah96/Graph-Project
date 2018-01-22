@@ -79,6 +79,8 @@ function draw (res){
                 var element = document.createElement("div");
                 var img = document.createElement('img');
                     img.src = imgSrc;
+                    img.width = 250;
+                    img.height = 250;
                 var p1 = document.createElement('p');
                     p1.innerHTML = imgDesc;
                 var button = document.createElement('button');
@@ -86,6 +88,7 @@ function draw (res){
                     button.innerHTML = "click to view Analytics";
                     button.addEventListener ("click", function() {
                         $('#graph').css('display','block');
+                        window.scrollTo(0, document.body.scrollHeight);
                     });
                 var hr = document.createElement('hr');
                 element.appendChild(hr);

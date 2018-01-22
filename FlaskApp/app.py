@@ -116,6 +116,10 @@ def signin():
 def mains():
     return render_template('index.html')
 
+@app.route('/ig_page')
+def ig_page():
+    return render_template('ig_page.html')
+
 @app.route('/fb_page')
 def fb_page():
     return render_template('fb_page.html')
