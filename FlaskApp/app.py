@@ -15,6 +15,21 @@ twitter = oauth.remote_app(
     authorize_url='https://api.twitter.com/oauth/authorize'
 )
 
+linkedin = oauth.remote_app(
+    'linkedin',
+    consumer_key='782worfogh1ext',
+    consumer_secret='qeQZILmaThxIaXLC',
+    request_token_params={
+        'scope': 'r_basicprofile',
+        'state': 'RandomString',
+    },
+    base_url='https://api.linkedin.com/v1/',
+    request_token_url=None,
+    access_token_method='POST',
+    access_token_url='https://www.linkedin.com/uas/oauth2/accessToken',
+    authorize_url='https://www.linkedin.com/uas/oauth2/authorization',
+)
+
 
 @twitter.tokengetter
 def get_twitter_token():
