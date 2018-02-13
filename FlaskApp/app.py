@@ -135,6 +135,10 @@ def mains():
 def ig_page():
     return render_template('ig_page.html')
 
+@app.route('/li_page')
+def li_page():
+    return render_template('li_page.html')
+
 @app.route('/fb_page')
 def fb_page():
     return render_template('fb_page.html')
