@@ -17,7 +17,7 @@
         api_key: 782worfogh1ext
         authorize: true
         onLoad: onLinkedInLoad
-        scope: r_basicprofile
+        scope: r_basicprofile r_emailaddress
     </script>
 
     <script type="text/javascript">
@@ -34,10 +34,10 @@
         // Handle the successful return from the API call
         function displayProfileData(data) {
             var user = data.values[0];
+            console.log(user)
             document.getElementById("picture").innerHTML = '<img src="' + user.pictureUrl + '" />';
             document.getElementById("name").innerHTML = user.firstName + ' ' + user.lastName;
             document.getElementById("intro").innerHTML = user.headline;
-            document.getElementById("email").innerHTML = user.emailAddress;
             document.getElementById("location").innerHTML = user.location.name;
             document.getElementById("link").innerHTML = '<a href="' + user.publicProfileUrl + '" target="_blank">Visit profile</a>';
             document.getElementById('profileData').style.display = 'block';
@@ -61,6 +61,9 @@
 </head>
 
 <body>
+
+    <script type="in/Login"></script>
+
     <!-- display profile info -->
     <div id="profileData" style="display: none;">
         <p>
