@@ -51,7 +51,7 @@ function API(authResponse) {
     console.log('Fetching information.... ');
 
     var accessToken = authResponse.accessToken;
-    var f = 'id,name,picture.height(720).width(720),albums.limit(100){name, photos.limit(100){name, picture,likes.limit(10000), tags.limit(100)}}';
+    var f = 'id,name,picture.height(720).width(720),albums.limit(100){name, photos.limit(100){name, picture,likes.limit(10000){name,time}, tags.limit(100)}}';
     var url = "https://graph.facebook.com/me?access_token="+accessToken+"&fields="+f
 
     function reqListener () {
@@ -74,7 +74,8 @@ function draw (res){
             for(var j=0; j<4; j++){
                 var imgDesc = res.albums.data[i].photos.data[j].name;
                 var imgSrc = res.albums.data[i].photos.data[j].picture;
-                var imgLikesArr = res.albums.data[i].photos.data[j].likes.data;
+                var imgLikesArr = res.albums.data[i].photos.data[j].likes.data.length;
+                var imgTags = res.albums.data[i].photos.data[j].tags ? res.albums.data[i].photos.data[j].tags.data.length : 0;
 
                 var element = document.createElement("div");
                 var img = document.createElement('img');
@@ -85,8 +86,15 @@ function draw (res){
                     p1.innerHTML = imgDesc;
                 var button = document.createElement('button');
                     button.id = "btn"+j;
+                    button.setAttribute('data-graph',JSON.stringify([
+                        {"key" : "comments","value" : 0},
+                        {"key" : "likes","value" : imgLikesArr},
+                        {"key" : "tags","value" : imgTags},
+                        {"key" : "shares","value" : 0}
+                    ]));
                     button.innerHTML = "click to view Analytics";
                     button.addEventListener ("click", function() {
+                        chart.setData(JSON.parse(this.getAttribute('data-graph')));
                         $('#graph').css('display','block');
                         window.scrollTo(0, document.body.scrollHeight);
                     });
@@ -102,30 +110,5 @@ function draw (res){
 }
 
 window.onload = function () {
-    
-    //Better to construct options first and then pass it as a parameter
-    var options = {
-      title: {
-        text: "Statistics"
-      },
-      animationEnabled: true,
-      exportEnabled: true,
-      data: [
-      {
-        type: "spline", //change it to line, area, column, pie, etc
-        dataPoints: [
-          { x: 10, y: 10 },
-          { x: 20, y: 12 },
-          { x: 30, y: 8 },
-          { x: 40, y: 14 },
-          { x: 50, y: 6 },
-          { x: 60, y: 24 },
-          { x: 70, y: -4 },
-          { x: 80, y: 10 }
-        ]
-      }
-      ]
-    };
-    $("#chartContainer").CanvasJSChart(options);
-    
+
 }

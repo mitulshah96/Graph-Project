@@ -15,6 +15,7 @@ function API(hashValue) {
 
     function reqListener () {
         var response = JSON.parse(this.responseText);
+        console.log(response);
         
         document.getElementById('status').innerHTML = 'Thanks for logging in, ' + response.data.full_name + '!';
         document.getElementById('dp').src = response.data.profile_picture;
@@ -46,7 +47,7 @@ function API1(hashValue){
 
     function reqListener () {
         var response = JSON.parse(this.responseText);
-        
+        console.log(response);
         draw(response);
     }
 
@@ -62,7 +63,9 @@ function draw (res){
             var imgDesc = res.data[i].caption.text;
             var imgSrc = res.data[i].images.standard_resolution.url;
             var imgLikes = res.data[i].likes.count;
-    
+            var imgComments = res.data[i].comments.count;
+            var imgTags = res.data[i].users_in_photo.length;
+
             var element = document.createElement("div");
             var img = document.createElement('img');
                 img.src = imgSrc;
@@ -74,8 +77,15 @@ function draw (res){
                 p2.innerHTML = "LIKES : "+imgLikes;
             var button = document.createElement('button');
                 button.id = "btn"+i;
+                button.setAttribute('data-graph',JSON.stringify([
+                    {"key" : "comments","value" : imgComments},
+                    {"key" : "likes","value" : imgLikes},
+                    {"key" : "tags","value" : imgTags},
+                    {"key" : "shares","value" : 0}
+                ]));
                 button.innerHTML = "click to view Analytics";
                 button.addEventListener ("click", function() {
+                    chart.setData(JSON.parse(this.getAttribute('data-graph')));
                     $('#graph').css('display','block');
                     window.scrollTo(0, document.body.scrollHeight);
                     // idd = this.id;
@@ -96,30 +106,6 @@ function draw (res){
 
 window.onload = function(){
     login();
-    //Better to construct options first and then pass it as a parameter
-    var options = {
-        title: {
-          text: "Statistics"
-        },
-        animationEnabled: true,
-        exportEnabled: true,
-        data: [
-        {
-          type: "spline", //change it to line, area, column, pie, etc
-          dataPoints: [
-            { x: 10, y: 10 },
-            { x: 20, y: 12 },
-            { x: 30, y: 8 },
-            { x: 40, y: 14 },
-            { x: 50, y: 6 },
-            { x: 60, y: 24 },
-            { x: 70, y: -4 },
-            { x: 80, y: 10 }
-          ]
-        }
-        ]
-    };
-    $("#chartContainer").CanvasJSChart(options);
 }
 // $(document).ready(function(){
 //     login();
