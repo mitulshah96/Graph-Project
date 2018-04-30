@@ -35,7 +35,7 @@ function login(){
                 // user is not logged in
                 document.location.href = "/dashboards";                
                 }
-            },{ scope: 'email,user_photos,user_friends,user_likes,user_relationships,user_location',
+            },{ scope: 'email,user_photos,user_friends,user_likes,user_location',
                 return_scopes: true 
                 }
             );
@@ -72,9 +72,9 @@ function draw (res){
     for(var i=0; i<res.albums.data.length; i++){
         if(res.albums.data[i].name == "Profile Pictures"){
             for(var j=0; j<4; j++){
-                var imgDesc = res.albums.data[i].photos.data[j].name;
+                var imgDesc = res.albums.data[i].photos.data[j].name ? res.albums.data[i].photos.data[j].name : "";
                 var imgSrc = res.albums.data[i].photos.data[j].picture;
-                var imgLikesArr = res.albums.data[i].photos.data[j].likes.data.length;
+                var imgLikesArr = res.albums.data[i].photos.data[j].likes ? res.albums.data[i].photos.data[j].likes.data.length : 0;
                 var imgTags = res.albums.data[i].photos.data[j].tags ? res.albums.data[i].photos.data[j].tags.data.length : 0;
 
                 var element = document.createElement("div");
