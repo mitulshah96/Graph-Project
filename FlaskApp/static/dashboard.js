@@ -12,6 +12,12 @@ function fbClicked(){
     document.location.href = "/fb_page";
 };
 
+function codeAddress() {
+           
+    document.getElementById('div1').style.display = 'block';
+};
+window.onload = codeAddress;
+
 function igClicked(){
     document.location.href = "https://api.instagram.com/oauth/authorize/?client_id=bc73f0fe68e7459fb64e268d4174181f&redirect_uri=http://localhost:5000/ig_page&response_type=token";
 };
