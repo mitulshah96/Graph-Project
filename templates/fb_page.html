@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FB</title>
+  <style>
+        .axis {
+            font: 10px sans-serif;
+        }
+
+        .axis path,
+        .axis line {
+            fill: none;
+            stroke: #000;
+        }
+
+        .toolTip {
+            position: absolute;
+            display: none;
+            min-width: 80px;
+            height: auto;
+            background: none repeat scroll 0 0 #ffffff;
+            border: 1px solid #6F257F;
+            padding: 14px;
+            text-align: center;
+        }
+    </style>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+  <script type="text/javascript" src="../static/fb_page.js"></script>  
+</head>
+
+<body>
+ 
+    <div class="container">
+        <div class="header">
+            <nav>
+                <ul class="nav nav-pills pull-right">
+                    <li role="presentation" class="active">
+                        <a href="main">Home</a> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                    <li role="presentation">
+                        <a href="dashboards">Dashboard</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    </li>
+                </ul>
+            </nav>
+            <h3 class="text-muted">Live Analytic</h3>
+        </div>
+        <hr>
+        <div style="text-align: center">
+            <img id="dp" height="200" width="200"></img>
+            <p id="status"></p>
+            <a href='#' onclick='login();' id="hit" style="display : none">Login</a>
+            <a href='#' onclick='logout();'>click to logout</a>
+        </div>
+        <hr>
+        <h3 style="text-align: center">Displaying Your Facebook Profile Pictures</h3>
+        <div id="thumbnail"></div>
+        <hr>
+        <div id="graph" style="display : none">
+            <h3 style="text-align: center">Displaying your Picture Analytics</h3>
+            <hr>
+            <div class="chart-container"></div>
+            <span>Click to change colour</span>
+            <button class="color" data-color="red">red</button>
+            <button class="color" data-color="green">green</button>
+            <button class="color" data-color="blue">blue</button>
+            <!-- <button class="data">change data</button> -->
+            <hr>
+        </div>
+    </div>
+    
+    <script src="http://d3js.org/d3.v3.min.js"></script>
+    <script src="../static/chart.js"></script>
+</body>
+
+</html>
