@@ -35,7 +35,7 @@ function login(){
                 // user is not logged in
                 document.location.href = "/dashboards";                
                 }
-            },{ scope: 'email,user_photos,user_friends,user_likes,user_location',
+            },{ scope: 'email,user_photos,user_friends,user_likes,user_location,public_profile',
                 return_scopes: true 
                 }
             );
@@ -51,7 +51,7 @@ function API(authResponse) {
     console.log('Fetching information.... ');
 
     var accessToken = authResponse.accessToken;
-    var f = 'id,name,picture.height(720).width(720),albums.limit(100){name, photos.limit(100){name, picture,likes.limit(10000){name,time}, tags.limit(100)}}';
+    var f = 'id,name,picture.height(720).width(720),albums.limit(100){name, photos.limit(100){name, picture,likes.summary(true), tags.limit(100)}}';
     var url = "https://graph.facebook.com/me?access_token="+accessToken+"&fields="+f
 
     function reqListener () {
@@ -74,7 +74,7 @@ function draw (res){
             for(var j=0; j<4; j++){
                 var imgDesc = res.albums.data[i].photos.data[j].name ? res.albums.data[i].photos.data[j].name : "";
                 var imgSrc = res.albums.data[i].photos.data[j].picture;
-                var imgLikesArr = res.albums.data[i].photos.data[j].likes ? res.albums.data[i].photos.data[j].likes.data.length : 0;
+                var imgLikesArr = res.albums.data[i].photos.data[j].likes.summary ? res.albums.data[i].photos.data[j].likes.summary.total_count : 0;
                 var imgTags = res.albums.data[i].photos.data[j].tags ? res.albums.data[i].photos.data[j].tags.data.length : 0;
 
                 var element = document.createElement("div");
